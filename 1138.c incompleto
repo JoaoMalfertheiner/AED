@@ -1,0 +1,33 @@
+#include <stdio.h>
+#include <string.h>
+
+int contagem_global[10];
+
+void contar_digitos(int num) {
+    while (num > 0) {
+        contagem_global[num % 10]++;
+        num /= 10;
+    }
+}
+
+void processar_intervalo(int A, int B) {
+    memset(contagem_global, 0, sizeof(contagem_global));
+    for (int i = A; i <= B; i++) {
+        contar_digitos(i);
+    }
+    for (int i = 0; i < 10; i++) {
+        if (i > 0) printf(" ");
+        printf("%d", contagem_global[i]);
+    }
+    printf("\n");
+}
+
+int main() {
+    int A, B;
+    while (1) {
+        scanf("%d %d", &A, &B);
+        if (A == 0 && B == 0) break;
+        processar_intervalo(A, B);
+    }
+    return 0;
+}
